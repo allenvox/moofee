@@ -7,6 +7,13 @@ import (
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
+var keyboard = tgbotapi.NewInlineKeyboardMarkup(
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("✍ Записать", "write"),
+		tgbotapi.NewInlineKeyboardButtonData("📃 Статистика", "stats"),
+	),
+)
+
 func main() {
 
 	tokenContent, err := ioutil.ReadFile("token.txt")
@@ -26,10 +33,41 @@ func main() {
 	u.Timeout = 60
 	updates := bot.GetUpdatesChan(u)
 	for update := range updates {
-		if update.Message == nil {
-			continue
-		} else {
-			log.Printf("good")
+		if update.Message != nil {
+			// messages handler
+			chatID := update.Message.Chat.ID
+			msg := tgbotapi.NewMessage(chatID, "Выбери")
+
+			if update.Message.IsCommand() {
+				msg.ReplyMarkup = keyboard
+			}
+
+			if _, err = bot.Send(msg); err != nil {
+				panic(err)
+			}
+
+		} else if update.CallbackQuery != nil {
+			// callback (e.g. keyboard) handler
+			callback := tgbotapi.NewCallback(update.CallbackQuery.ID, update.CallbackQuery.Data)
+			if _, err := bot.Request(callback); err != nil {
+				panic(err)
+			}
+
+			chatID := update.CallbackQuery.Message.Chat.ID
+			data := update.CallbackQuery.Data
+
+			msg := tgbotapi.NewMessage(chatID, "Вы нажали на "+data)
+
+			switch data {
+			case "write":
+
+			case "stats":
+
+			}
+
+			if _, err = bot.Send(msg); err != nil {
+				panic(err)
+			}
 		}
 	}
 }
