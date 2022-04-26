@@ -15,7 +15,6 @@ var keyboard = tgbotapi.NewInlineKeyboardMarkup(
 )
 
 func main() {
-
 	tokenContent, err := ioutil.ReadFile("token.txt")
 	if err != nil {
 		log.Fatal(err)
@@ -32,20 +31,17 @@ func main() {
 	u := tgbotapi.NewUpdate(0)
 	u.Timeout = 60
 	updates := bot.GetUpdatesChan(u)
+
 	for update := range updates {
 		if update.Message != nil {
 			// messages handler
 			chatID := update.Message.Chat.ID
 			msg := tgbotapi.NewMessage(chatID, "Выбери")
-
-			if update.Message.IsCommand() {
-				msg.ReplyMarkup = keyboard
-			}
+			msg.ReplyMarkup = keyboard
 
 			if _, err = bot.Send(msg); err != nil {
 				panic(err)
 			}
-
 		} else if update.CallbackQuery != nil {
 			// callback (e.g. keyboard) handler
 			callback := tgbotapi.NewCallback(update.CallbackQuery.ID, update.CallbackQuery.Data)
