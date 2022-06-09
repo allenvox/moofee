@@ -1,2 +1,2 @@
-# moofee-bot
-Mood &amp; Feelings tracking bot for Telegram
+# Moofee Bot
+Just universal bot for Telegram

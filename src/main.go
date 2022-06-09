@@ -9,8 +9,8 @@ import (
 
 var keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("✍ Записать", "write"),
-		tgbotapi.NewInlineKeyboardButtonData("📃 Статистика", "stats"),
+		tgbotapi.NewInlineKeyboardButtonData("✍ Шифрование", "code"),
+		tgbotapi.NewInlineKeyboardButtonData("📃 Поиск по картинке", "picsearch"),
 	),
 )
 
@@ -34,7 +34,6 @@ func main() {
 
 	for update := range updates {
 		if update.Message != nil {
-			// messages handler
 			chatID := update.Message.Chat.ID
 			msg := tgbotapi.NewMessage(chatID, "Выбери")
 			msg.ReplyMarkup = keyboard
@@ -55,9 +54,9 @@ func main() {
 			msg := tgbotapi.NewMessage(chatID, "Вы нажали на "+data)
 
 			switch data {
-			case "write":
+			case "code":
 
-			case "stats":
+			case "picsearch":
 
 			}
 
