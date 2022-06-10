@@ -1,6 +1,6 @@
 all: main
 
-main: src/main.go
+main: src/main.go src/bot.go src/handler.go src/keyboards.go
 	go build $^
 
 run:
