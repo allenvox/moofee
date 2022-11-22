@@ -21,3 +21,9 @@ func initBot() *tgbotapi.BotAPI {
 	log.Printf("Authorized on account @%s", bot.Self.UserName)
 	return bot
 }
+
+func send(bot *tgbotapi.BotAPI, msg tgbotapi.MessageConfig) {
+	if _, err := bot.Send(msg); err != nil {
+		panic(err)
+	}
+}
