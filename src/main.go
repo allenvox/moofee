@@ -18,8 +18,6 @@ func main() {
 		msg.ReplyMarkup = start_keyboard
 		handleCommands(update, &msg)
 		handleKeyboards(bot, update, &msg)
-		if _, err := bot.Send(msg); err != nil {
-			panic(err)
-		}
+		send(bot, msg)
 	}
 }
