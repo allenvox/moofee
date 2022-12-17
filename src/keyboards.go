@@ -17,6 +17,6 @@ var start_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 var code_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	tgbotapi.NewInlineKeyboardRow(
 		tgbotapi.NewInlineKeyboardButtonData("Цезарь", "caesar"),
-		tgbotapi.NewInlineKeyboardButtonData("Виженер", "vijener"),
+		tgbotapi.NewInlineKeyboardButtonData("Виженер", "vigenere"),
 	),
 )
