@@ -61,15 +61,16 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, msg *tgbotapi
 		if _, err := bot.Request(callback); err != nil {
 			panic(err)
 		}
+		msg.ReplyMarkup = nil
 		switch data {
 		case "code":
 			msg.ReplyMarkup = code_keyboard
 		case "picsearch":
-			msg.ReplyMarkup = nil
 			msg.Text = "Отправь фото для поиска"
 		case "help":
-			msg.ReplyMarkup = nil
 			msg.Text = "Команды:\n\n/author — разработчик бота\n/v — runtime environment\n/time — время в Новосибирске (GMT+7)\n/date —  сегодняшняя дата"
+		default:
+			msg.ReplyMarkup = start_keyboard
 		}
 	}
 }
