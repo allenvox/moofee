@@ -4,9 +4,16 @@ import (
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
+const (
+	no_flag = iota
+	caesar_flag
+	vigenere_flag
+)
+
 func main() {
 	bot := initBot()
 	updates := getUpdates(bot)
+	var flag = no_flag
 	for update := range updates {
 		var chatID int64
 		if update.Message != nil {
@@ -16,8 +23,7 @@ func main() {
 		}
 		msg := tgbotapi.NewMessage(chatID, "Выбери")
 		msg.ReplyMarkup = start_keyboard
-		handleCommands(update, &msg)
-		handleKeyboards(bot, update, &msg)
+		handleMessage(bot, update, &msg, &flag)
 		send(bot, msg)
 	}
 }
