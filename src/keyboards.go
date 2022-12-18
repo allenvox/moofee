@@ -10,6 +10,11 @@ var start_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardButtonData("🔍 Поиск", "picsearch"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("🎸 Аккорды", "chords"),
+		tgbotapi.NewInlineKeyboardButtonData("🆘 Помощь", "help"),
+	),
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("♟️ Шахматы", "chess"),
 		tgbotapi.NewInlineKeyboardButtonData("🆘 Помощь", "help"),
 	),
 )
@@ -18,5 +23,21 @@ var code_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	tgbotapi.NewInlineKeyboardRow(
 		tgbotapi.NewInlineKeyboardButtonData("Цезарь", "caesar"),
 		tgbotapi.NewInlineKeyboardButtonData("Виженер", "vigenere"),
+	),
+)
+
+var chess_keyboard = tgbotapi.NewInlineKeyboardMarkup(
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("🧩 Головоломка", "puzzle"),
+	),
+)
+
+var chords_keyboard = tgbotapi.NewInlineKeyboardMarkup(
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("Стрыкало", "strykalo"),
+		tgbotapi.NewInlineKeyboardButtonData("Нервы", "nervy"),
+	),
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("Другое", "other"),
 	),
 )
