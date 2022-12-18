@@ -6,8 +6,10 @@ import (
 
 const (
 	no_flag = iota
-	caesar_flag
-	vigenere_flag
+	caesar_phrase
+	caesar_shift
+	vigenere_phrase
+	vigenere_key
 )
 
 func main() {
