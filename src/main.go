@@ -23,7 +23,7 @@ func main() {
 		} else if update.CallbackQuery != nil {
 			chatID = update.CallbackQuery.Message.Chat.ID
 		}
-		msg := tgbotapi.NewMessage(chatID, "Выбери")
+		msg := tgbotapi.NewMessage(chatID, "")
 		msg.ReplyMarkup = start_keyboard
 		handleMessage(bot, update, &msg, &flag)
 		send(bot, msg)
