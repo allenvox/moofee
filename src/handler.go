@@ -74,6 +74,7 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, msg *tgbotapi
 	if _, err := bot.Request(callback); err != nil {
 		panic(err)
 	}
+	msg.ReplyMarkup = nil
 	switch data {
 	case "code":
 		msg.ReplyMarkup = code_keyboard
@@ -91,14 +92,15 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, msg *tgbotapi
 		msg.ReplyMarkup = chess_keyboard
 	case "chords":
 		msg.ReplyMarkup = chords_keyboard
-	case "strykalo":
-		msg.ReplyMarkup = nervy_keyboard
 	case "nervy":
+		msg.ReplyMarkup = nervy_keyboard
+	case "strykalo":
 		msg.ReplyMarkup = strykalo_keyboard
 	case "other":
 		msg.ReplyMarkup = other_keyboard
 	case "nashe_leto", "kayen", "funk", "deshovye_dramy", "molchi":
 		msg.Text = getSong(data)
+		msg.ReplyMarkup = start_keyboard
 	default:
 		msg.ReplyMarkup = start_keyboard
 	}
