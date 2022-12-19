@@ -22,6 +22,13 @@ func initBot() *tgbotapi.BotAPI {
 	return bot
 }
 
+func getUpdates(bot *tgbotapi.BotAPI) tgbotapi.UpdatesChannel {
+	u := tgbotapi.NewUpdate(0)
+	u.Timeout = 60
+	updates := bot.GetUpdatesChan(u)
+	return updates
+}
+
 func send(bot *tgbotapi.BotAPI, msg tgbotapi.MessageConfig) {
 	if _, err := bot.Send(msg); err != nil {
 		panic(err)
