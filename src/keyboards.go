@@ -11,10 +11,9 @@ var start_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	),
 	tgbotapi.NewInlineKeyboardRow(
 		tgbotapi.NewInlineKeyboardButtonData("🎸 Аккорды", "chords"),
-		tgbotapi.NewInlineKeyboardButtonData("🆘 Помощь", "help"),
+		tgbotapi.NewInlineKeyboardButtonData("♟️ Шахматы", "chess"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("♟️ Шахматы", "chess"),
 		tgbotapi.NewInlineKeyboardButtonData("🆘 Помощь", "help"),
 	),
 )
@@ -59,9 +58,9 @@ var nervy_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	),
 )
 
-//todo
 var other_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	tgbotapi.NewInlineKeyboardRow(
 		tgbotapi.NewInlineKeyboardButtonData("Молчи", "molchi"),
+		tgbotapi.NewInlineKeyboardButtonData("The Middle", "middle"),
 	),
 )
