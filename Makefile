@@ -1,7 +1,7 @@
 all: main
 
 .PHONY: main
-main: src/main.go src/bot.go src/handler.go src/keyboards.go src/songs.go
+main: src/main.go src/bot.go src/handler.go src/keyboards.go src/songs.go src/cipher.go
 	go build $^
 
 run:
