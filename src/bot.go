@@ -43,8 +43,10 @@ func editKeyboard(bot *tgbotapi.BotAPI, update tgbotapi.Update, keyboard tgbotap
 }
 
 func editText(bot *tgbotapi.BotAPI, update tgbotapi.Update, s string) {
-	text := tgbotapi.NewEditMessageTextAndMarkup(update.CallbackQuery.Message.Chat.ID, update.CallbackQuery.Message.MessageID, s, *update.CallbackQuery.Message.ReplyMarkup)
-	if _, err := bot.Send(text); err != nil {
-		panic(err)
+	if s != update.CallbackQuery.Message.Text {
+		text := tgbotapi.NewEditMessageTextAndMarkup(update.CallbackQuery.Message.Chat.ID, update.CallbackQuery.Message.MessageID, s, *update.CallbackQuery.Message.ReplyMarkup)
+		if _, err := bot.Send(text); err != nil {
+			panic(err)
+		}
 	}
 }
