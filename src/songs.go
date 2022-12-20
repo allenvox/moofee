@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	strings  = "\nПорядок струн: 654321\nАккорды:\n"
+	s        = "\nПорядок струн: 654321\nАккорды:\n"
 	Am       = "Am: 002210\n"
 	E        = "E: 022100\n"
 	Em       = "Em: 022000\n"
@@ -52,19 +52,19 @@ func getSong(data string) string {
 	text := getText("songs/" + data + ".txt")
 	switch data {
 	case "molchi":
-		song = "кис-кис — Молчи\n" + strings + A + Gsharpm4 + Csharpm4 + B
+		song = "кис-кис — Молчи\n" + s + A + Gsharpm4 + Csharpm4 + B
 	case "nashe_leto":
-		song = "Валентин Стрыкало — Наше лето\n" + strings + Am + F + Dm + E
+		song = "Валентин Стрыкало — Наше лето\n" + s + Am + F + Dm + E
 	case "slishkom_vlyublon":
-		song = "Нервы — Слишком влюблён\n" + strings + Csharpm4 + Dsharp6 + Gsharpm4 + E
+		song = "Нервы — Слишком влюблён\n" + s + Csharpm4 + Dsharp6 + Gsharpm4 + E
 	case "kayen":
-		song = "Валентин Стрыкало — Кайен\n" + strings + Am + Dm + E
+		song = "Валентин Стрыкало — Кайен\n" + s + Am + Dm + E
 	case "funk":
-		song = "Валентин Стрыкало — Фанк\n" + strings + F7 + E7 + Am5 + G3
+		song = "Валентин Стрыкало — Фанк\n" + s + F7 + E7 + Am5 + G3
 	case "deshovye_dramy":
-		song = "Валентин Стрыкало — Дешёвые драмы\n" + strings + Am + F + E + G + Dm
+		song = "Валентин Стрыкало — Дешёвые драмы\n" + s + Am + F + E + G + Dm
 	case "middle":
-		song = "Jimmy Eat World — The Middle\n" + strings + D + A + G
+		song = "Jimmy Eat World — The Middle\n" + s + D + A + G
 	}
 	return song + "\n" + text
 }
