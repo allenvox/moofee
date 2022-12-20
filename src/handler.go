@@ -42,10 +42,12 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		editText(bot, update, "Помощь")
 		editKeyboard(bot, update, help_keyboard)
 	case "caesar":
-		editText(bot, update, "Введите фразу для шифрования")
+		msg := tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, "Введите фразу для шифрования")
+		send(bot, msg)
 		*flag = caesar_phrase
 	case "vigenere":
-		editText(bot, update, "Введите фразу для шифрования")
+		msg := tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, "Введите фразу для шифрования")
+		send(bot, msg)
 		*flag = vigenere_phrase
 	case "chess":
 		editKeyboard(bot, update, chess_keyboard)
@@ -100,26 +102,26 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 }
 
 var phrase string
-var shift int
-var key string
 
 func handleText(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 	switch *flag {
 	case caesar_phrase:
 		phrase = update.Message.Text
-		editText(bot, update, "Введите символьное смещение (например, для преобразования А в Б — 1, А в Я — 32)")
+		msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Введите символьное смещение (например, для преобразования А в Б — 1, А в Я — 32)")
+		send(bot, msg)
 		*flag = caesar_shift
 	case caesar_shift:
-		num, err := strconv.Atoi(update.Message.Text)
+		shift, err := strconv.Atoi(update.Message.Text)
 		if err != nil {
-			editText(bot, update, "Значение смещения должно быть числовым")
-			panic(err)
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Значение смещения должно быть числовым")
+			send(bot, msg)
 		}
-		if num < 0 {
-			editText(bot, update, "Значение смещения должно быть больше нуля")
+		if shift < 0 {
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Значение смещения должно быть больше нуля")
+			send(bot, msg)
 		} else {
-			shift = num
-			//todo
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, caesar(phrase, shift))
+			send(bot, msg)
 			*flag = no_flag
 		}
 	case vigenere_phrase:
@@ -127,7 +129,7 @@ func handleText(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		editText(bot, update, "Введите ключ для шифрования строки")
 		*flag = vigenere_key
 	case vigenere_key:
-		key = update.Message.Text
+		//key := update.Message.Text
 		//todo
 		*flag = no_flag
 	default:
