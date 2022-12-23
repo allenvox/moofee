@@ -126,11 +126,13 @@ func handleText(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		}
 	case vigenere_phrase:
 		phrase = update.Message.Text
-		editText(bot, update, "Введите ключ для шифрования строки")
+		msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Введите ключ для шифрования строки")
+		send(bot, msg)
 		*flag = vigenere_key
 	case vigenere_key:
-		//key := update.Message.Text
-		//todo
+		key := update.Message.Text
+		msg := tgbotapi.NewMessage(update.Message.Chat.ID, vigenere(phrase, key))
+		send(bot, msg)
 		*flag = no_flag
 	default:
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Выбери то, что нужно")
