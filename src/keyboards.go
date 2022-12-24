@@ -78,6 +78,11 @@ var strykalo_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 var nervy_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	tgbotapi.NewInlineKeyboardRow(
 		tgbotapi.NewInlineKeyboardButtonData("Слишком влюблён", "slishkom_vlyublon"),
+		tgbotapi.NewInlineKeyboardButtonData("Май bye", "may_bye"),
+	),
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("Самый дорогой человек", "samy_dorogoy"),
+		tgbotapi.NewInlineKeyboardButtonData("Батареи", "batarei"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
 		tgbotapi.NewInlineKeyboardButtonData("⬇ Обратно", "start"),
