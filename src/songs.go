@@ -28,6 +28,7 @@ const (
 	C        = "C: 032010\n"
 	Csharpm4 = "C#m4: 446654\n"
 	B        = "B: 224442\n"
+	Bm       = "Bm: 224432\n"
 )
 
 func getText(filename string) string {
@@ -65,6 +66,12 @@ func getSong(data string) string {
 		song = "Валентин Стрыкало — Дешёвые драмы\n" + s + Am + F + E + G + Dm
 	case "middle":
 		song = "Jimmy Eat World — The Middle\n" + s + D + A + G
+	case "may_bye":
+		song = "Нервы — Май bye\n" + s + Bm + G3 + Am5 + Fsharp
+	case "samy_dorogoy":
+		song = "Нервы — Самый дорогой человек\n" + s + Em + C + G + D
+	case "batarei":
+		song = "Нервы — Батареи\n" + s + "+ palm mute\n" + Dm + E + Am + F
 	}
 	return song + "\n" + text
 }
