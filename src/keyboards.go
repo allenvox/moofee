@@ -54,6 +54,7 @@ var chords_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardButtonData("Нервы", "nervy"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("кис-кис", "kiskis"),
 		tgbotapi.NewInlineKeyboardButtonData("Другое", "other"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
@@ -71,7 +72,7 @@ var strykalo_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardButtonData("Фанк", "funk"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("⬇ Обратно", "start"),
+		tgbotapi.NewInlineKeyboardButtonData("⬇ Исполнители", "chords"),
 	),
 )
 
@@ -85,16 +86,29 @@ var nervy_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardButtonData("Батареи", "batarei"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("⬇ Обратно", "start"),
+		tgbotapi.NewInlineKeyboardButtonData("⬇ Исполнители", "chords"),
+	),
+)
+
+var kiskis_keyboard = tgbotapi.NewInlineKeyboardMarkup(
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("Молчи", "molchi"),
+		tgbotapi.NewInlineKeyboardButtonData("Мелочь", "meloch"),
+	),
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("Кирилл", "kirill"),
+		tgbotapi.NewInlineKeyboardButtonData("ЛБТД", "lbtd"),
+	),
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("⬇ Исполнители ", "chords"),
 	),
 )
 
 var other_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("Молчи", "molchi"),
 		tgbotapi.NewInlineKeyboardButtonData("The Middle", "middle"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("⬇ Обратно", "start"),
+		tgbotapi.NewInlineKeyboardButtonData("⬇ Исполнители", "chords"),
 	),
 )
