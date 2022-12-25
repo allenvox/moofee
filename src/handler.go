@@ -66,7 +66,7 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 	case "other":
 		editText(bot, update, "Другое")
 		editKeyboard(bot, update, other_keyboard)
-	case "nashe_leto", "kayen", "funk", "deshovye_dramy", "molchi", "middle", "slishkom_vlyublon", "may_bye", "samy_dorogoi", "batarei":
+	case "lbtd", "kirill", "meloch", "nashe_leto", "kayen", "funk", "deshovye_dramy", "molchi", "middle", "slishkom_vlyublon", "may_bye", "samy_dorogoi", "batarei":
 		editText(bot, update, getSong(data))
 		editKeyboard(bot, update, chords_keyboard)
 	case "date":
