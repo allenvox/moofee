@@ -6,6 +6,7 @@ const (
 	caesar_shift
 	vigenere_phrase
 	vigenere_key
+	quest
 )
 
 func main() {
