@@ -3,6 +3,7 @@ package main
 import (
 	"runtime"
 	"strconv"
+	"strings"
 	"time"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
@@ -35,6 +36,10 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		panic(err)
 	}
 	switch data {
+	case "quest":
+		msg := tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, quest_phrases[0])
+		send(bot, msg)
+		*flag = quest
 	case "code":
 		editText(bot, update, "Шифры")
 		editKeyboard(bot, update, code_keyboard)
@@ -134,6 +139,31 @@ func handleText(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, vigenere(phrase, key))
 		send(bot, msg)
 		*flag = no_flag
+	case quest:
+		switch strings.ToLower(update.Message.Text) {
+		case quest_keywords[0]:
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, quest_phrases[1])
+			send(bot, msg)
+		case quest_keywords[1]:
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, quest_phrases[2])
+			send(bot, msg)
+		case quest_keywords[2]:
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, quest_phrases[3])
+			send(bot, msg)
+		case quest_keywords[3]:
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, quest_phrases[4])
+			send(bot, msg)
+		case quest_keywords[4]:
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, quest_phrases[5])
+			send(bot, msg)
+		case quest_keywords[5]:
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, quest_phrases[6])
+			send(bot, msg)
+			*flag = no_flag
+		default:
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "🤔 Кажется, что-то не то...\nПопробуй ввести другое.")
+			send(bot, msg)
+		}
 	default:
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Выбери то, что нужно")
 		msg.ReplyMarkup = start_keyboard
