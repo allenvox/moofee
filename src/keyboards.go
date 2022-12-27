@@ -108,6 +108,7 @@ var kiskis_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 var other_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	tgbotapi.NewInlineKeyboardRow(
 		tgbotapi.NewInlineKeyboardButtonData("The Middle", "middle"),
+		tgbotapi.NewInlineKeyboardButtonData("Вахтёрам", "vahteram"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
 		tgbotapi.NewInlineKeyboardButtonData("⬇ Исполнители", "chords"),
