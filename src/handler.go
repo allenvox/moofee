@@ -57,8 +57,11 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 	case "chess":
 		editKeyboard(bot, update, chess_keyboard)
 	case "puzzle":
-		getPuzzle()
-		editKeyboard(bot, update, chess_keyboard)
+		editText(bot, update, "Выбери шахматную задачу")
+		editKeyboard(bot, update, puzzle_keyboard)
+	case "puzzle1", "puzzle2", "puzzle3":
+		num, _ := strconv.Atoi(strings.ReplaceAll(data, "puzzle", ""))
+		getPuzzle(num)
 	case "chords":
 		editText(bot, update, "Аккорды")
 		editKeyboard(bot, update, chords_keyboard)
