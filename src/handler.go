@@ -64,7 +64,7 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		editText(bot, update, "🧩 Мат в 3 хода")
 		editKeyboard(bot, update, mate_in3_keyboard)
 	case "m2_1", "m2_2", "m3_1", "m3_2":
-		picture := tgbotapi.NewPhoto(update.CallbackQuery.Message.Chat.ID, tgbotapi.FilePath("puzzles/"+data))
+		picture := tgbotapi.NewPhoto(update.CallbackQuery.Message.Chat.ID, tgbotapi.FilePath("puzzles/"+data+".png"))
 		picture.Caption = puzzleDescription(data, flag)
 		send(bot, picture)
 		msg := tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, "Введите первый ход")
