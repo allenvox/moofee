@@ -67,6 +67,8 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		picture := tgbotapi.NewPhoto(update.CallbackQuery.Message.Chat.ID, tgbotapi.FilePath("puzzles/"+data))
 		picture.Caption = puzzleDescription(data, flag)
 		send(bot, picture)
+		msg := tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, "Введите первый ход")
+		send(bot, msg)
 	case "chords":
 		editText(bot, update, "Аккорды")
 		editKeyboard(bot, update, chords_keyboard)
@@ -172,6 +174,9 @@ func handleText(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "🤔 Кажется, что-то не то...\nПопробуй ввести другое.")
 			send(bot, msg)
 		}
+	case m2_1, m2_2, m3_1, m3_2:
+		msg := tgbotapi.NewMessage(update.Message.Chat.ID, handlePuzzle(update, flag))
+		send(bot, msg)
 	default:
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Выбери то, что нужно")
 		msg.ReplyMarkup = start_keyboard
