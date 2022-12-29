@@ -30,9 +30,9 @@ func puzzleDescription(name string, flag *int) string {
 var move int = 1
 var chess_phrases = []string{"❌ Неверный ход\nПопробуйте другой", "✅ Отличное начало. Введите второй ход", "✅ Замечательно! Введите третий ход", "🎂 Поздравляю!\n✅ Вы выполнили шахматную задачу ♟"}
 var solution_m2_1 = []string{"b5-a5", "a5-a1"}
-var solution_m2_2 = []string{"b5-a5", "a5-a1"}
-var solution_m3_1 = []string{"b5-a5", "a5-a1", ""}
-var solution_m3_2 = []string{"b5-a5", "a5-a1", ""}
+var solution_m2_2 = []string{"f2-f8", "f8-e8"}
+var solution_m3_1 = []string{"-", "-", "-"}
+var solution_m3_2 = []string{"-", "-", "-"}
 
 func handlePuzzle(update tgbotapi.Update, flag *int) string {
 	text := update.Message.Text
