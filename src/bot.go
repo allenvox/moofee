@@ -29,8 +29,8 @@ func getUpdates(bot *tgbotapi.BotAPI) tgbotapi.UpdatesChannel {
 	return updates
 }
 
-func send(bot *tgbotapi.BotAPI, msg tgbotapi.MessageConfig) {
-	if _, err := bot.Send(msg); err != nil {
+func send(bot *tgbotapi.BotAPI, c tgbotapi.Chattable) {
+	if _, err := bot.Send(c); err != nil {
 		panic(err)
 	}
 }
