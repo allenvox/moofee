@@ -55,13 +55,18 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		send(bot, msg)
 		*flag = vigenere_phrase
 	case "chess":
+		editText(bot, update, "Выбери тип шахматной задачи")
 		editKeyboard(bot, update, chess_keyboard)
-	case "puzzle":
-		editText(bot, update, "Выбери шахматную задачу")
-		editKeyboard(bot, update, puzzle_keyboard)
-	case "puzzle1", "puzzle2", "puzzle3":
-		num, _ := strconv.Atoi(strings.ReplaceAll(data, "puzzle", ""))
-		getPuzzle(num)
+	case "mate_in2":
+		editText(bot, update, "🧩 Мат в 2 хода")
+		editKeyboard(bot, update, mate_in2_keyboard)
+	case "mate_in3":
+		editText(bot, update, "🧩 Мат в 3 хода")
+		editKeyboard(bot, update, mate_in3_keyboard)
+	case "m2_1", "m2_2", "m3_1", "m3_2":
+		picture := tgbotapi.NewPhoto(update.CallbackQuery.Message.Chat.ID, tgbotapi.FilePath("puzzles/"+data))
+		picture.Caption = puzzleDescription(data, flag)
+		send(bot, picture)
 	case "chords":
 		editText(bot, update, "Аккорды")
 		editKeyboard(bot, update, chords_keyboard)
