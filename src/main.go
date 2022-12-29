@@ -7,6 +7,10 @@ const (
 	vigenere_phrase
 	vigenere_key
 	quest
+	m2_1
+	m2_2
+	m3_1
+	m3_2
 )
 
 func main() {
