@@ -42,7 +42,10 @@ var code_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 
 var chess_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("🧩 Мат в 1 ход", "mate_in1"),
 		tgbotapi.NewInlineKeyboardButtonData("🧩 Мат в 2 хода", "mate_in2"),
+	),
+	tgbotapi.NewInlineKeyboardRow(
 		tgbotapi.NewInlineKeyboardButtonData("🧩 Мат в 3 хода", "mate_in3"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
