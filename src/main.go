@@ -11,6 +11,8 @@ const (
 	m2_2
 	m3_1
 	m3_2
+	m4_1
+	m4_2
 )
 
 func main() {

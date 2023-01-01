@@ -7,6 +7,21 @@ import (
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
+const (
+	no_flag = iota
+	caesar_phrase
+	caesar_shift
+	vigenere_phrase
+	vigenere_key
+	quest
+	m2_1
+	m2_2
+	m3_1
+	m3_2
+	m4_1
+	m4_2
+)
+
 func initBot() *tgbotapi.BotAPI {
 	tokenContent, err := ioutil.ReadFile("token.txt")
 	if err != nil {
