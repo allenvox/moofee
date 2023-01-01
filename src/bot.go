@@ -14,6 +14,8 @@ const (
 	vigenere_phrase
 	vigenere_key
 	quest
+	m1_1
+	m1_2
 	m2_1
 	m2_2
 	m3_1
