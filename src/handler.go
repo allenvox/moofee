@@ -57,13 +57,19 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 	case "chess":
 		editText(bot, update, "Выбери тип шахматной задачи")
 		editKeyboard(bot, update, chess_keyboard)
+	case "mate_in1":
+		editText(bot, update, "🧩 Мат в 1 ход")
+		editKeyboard(bot, update, mate_in1_keyboard)
 	case "mate_in2":
 		editText(bot, update, "🧩 Мат в 2 хода")
 		editKeyboard(bot, update, mate_in2_keyboard)
 	case "mate_in3":
 		editText(bot, update, "🧩 Мат в 3 хода")
 		editKeyboard(bot, update, mate_in3_keyboard)
-	case "m2_1", "m2_2", "m3_1", "m3_2":
+	case "mate_in4":
+		editText(bot, update, "🧩 Мат в 4 хода")
+		editKeyboard(bot, update, mate_in4_keyboard)
+	case "m1_1", "m1_2", "m2_1", "m2_2", "m3_1", "m3_2", "m4_1", "m4_2":
 		picture := tgbotapi.NewPhoto(update.CallbackQuery.Message.Chat.ID, tgbotapi.FilePath("puzzles/"+data+".png"))
 		picture.Caption = puzzleDescription(data, flag)
 		send(bot, picture)
@@ -174,7 +180,7 @@ func handleText(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "🤔 Кажется, что-то не то...\nПопробуй ввести другое.")
 			send(bot, msg)
 		}
-	case m2_1, m2_2, m3_1, m3_2:
+	case m1, m2, m3, m4:
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, handlePuzzle(update, flag))
 		send(bot, msg)
 	default:
