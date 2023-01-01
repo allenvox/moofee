@@ -47,9 +47,20 @@ var chess_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	),
 	tgbotapi.NewInlineKeyboardRow(
 		tgbotapi.NewInlineKeyboardButtonData("🧩 Мат в 3 хода", "mate_in3"),
+		tgbotapi.NewInlineKeyboardButtonData("🧩 Мат в 4 хода", "mate_in4"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
 		tgbotapi.NewInlineKeyboardButtonData("⬇ Шахматы", "chess"),
+	),
+)
+
+var mate_in1_keyboard = tgbotapi.NewInlineKeyboardMarkup(
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("1", "m1_1"),
+		tgbotapi.NewInlineKeyboardButtonData("2", "m1_2"),
+	),
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("⬇ Шахматные задачи", "chess"),
 	),
 )
 
@@ -67,6 +78,16 @@ var mate_in3_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	tgbotapi.NewInlineKeyboardRow(
 		tgbotapi.NewInlineKeyboardButtonData("1", "m3_1"),
 		tgbotapi.NewInlineKeyboardButtonData("2", "m3_2"),
+	),
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("⬇ Шахматные задачи", "chess"),
+	),
+)
+
+var mate_in4_keyboard = tgbotapi.NewInlineKeyboardMarkup(
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("1", "m4_1"),
+		tgbotapi.NewInlineKeyboardButtonData("2", "m4_2"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
 		tgbotapi.NewInlineKeyboardButtonData("⬇ Шахматные задачи", "chess"),
