@@ -25,7 +25,7 @@ var help_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardButtonData("📅 Дата", "date"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("???", "quest"),
+		//tgbotapi.NewInlineKeyboardButtonData("???", "quest"),
 		tgbotapi.NewInlineKeyboardButtonData("⬇ Обратно", "start"),
 	),
 )

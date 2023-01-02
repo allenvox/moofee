@@ -13,11 +13,11 @@ const (
 	caesar_shift
 	vigenere_phrase
 	vigenere_key
-	quest
 	m1
 	m2
 	m3
 	m4
+	//quest
 )
 
 func initBot() *tgbotapi.BotAPI {

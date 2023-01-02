@@ -43,7 +43,7 @@ var chess_solutions = [][][]string{
 func handlePuzzle(update tgbotapi.Update, flag *int) string {
 	text := update.Message.Text
 	var result string = "std"
-	move_solution := chess_solutions[*flag-5][chess_puzzle_number-1][move-1]
+	move_solution := chess_solutions[*flag-4][chess_puzzle_number-1][move-1]
 	switch move {
 	case 1:
 		if text != move_solution {
