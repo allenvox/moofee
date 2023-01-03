@@ -22,7 +22,8 @@ var move int = 1
 var chess_phrases = []string{"❌ Неверный ход\nПопробуйте другой", "✅ Отличное начало. Введите второй ход", "✅ Замечательно! Введите третий ход", "🎂 Поздравляю!\n✅ Вы выполнили шахматную задачу ♟", "✅ Третий ход верный! Введите четвёртый ход"}
 var chess_solutions = [][][]string{
 	{ // mate in 1
-
+		{"g5-f7"},
+		{"f5-g3"},
 	},
 
 	{ // m2
@@ -36,7 +37,8 @@ var chess_solutions = [][][]string{
 	},
 
 	{ //m4
-
+		{"-", "-", "-", "-"},
+		{"-", "-", "-", "-"},
 	},
 }
 
@@ -49,8 +51,13 @@ func handlePuzzle(update tgbotapi.Update, flag *int) string {
 		if text != move_solution {
 			result = chess_phrases[0]
 		} else {
-			result = chess_phrases[1]
-			move++
+			if *flag < m2 {
+				result = chess_phrases[3]
+				*flag = no_flag
+			} else {
+				result = chess_phrases[1]
+				move++
+			}
 		}
 	case 2:
 		if text != move_solution {
