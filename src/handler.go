@@ -35,10 +35,10 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		panic(err)
 	}
 	switch data {
-	case "quest":
-		msg := tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, quest_phrases[0])
-		send(bot, msg)
-		*flag = quest
+	/*case "quest":
+	msg := tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, quest_phrases[0])
+	send(bot, msg)
+	*flag = quest*/
 	case "code":
 		editText(bot, update, "Шифры")
 		editKeyboard(bot, update, code_keyboard)
