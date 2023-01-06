@@ -28,6 +28,8 @@ func handleCommands(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
 	send(bot, tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, "У меня нет команд, тыкай кнопки"))
 }
 
+var vigenere_switch = 0
+
 func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 	data := update.CallbackQuery.Data
 	callback := tgbotapi.NewCallback(update.CallbackQuery.ID, update.CallbackQuery.Data)
@@ -50,7 +52,16 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		send(bot, msg)
 		*flag = caesar_phrase
 	case "vigenere":
-		msg := tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, "Введите фразу для шифрования")
+		editText(bot, update, "Шифр Виженера")
+		editKeyboard(bot, update, vigenere_keyboard)
+	case "vigenere_encode", "vigenere_decode":
+		text := "Введите фразу для "
+		if data == "vigenere_decode" {
+			text += "де"
+			vigenere_switch = 1
+		}
+		text += "шифрования"
+		msg := tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, text)
 		send(bot, msg)
 		*flag = vigenere_phrase
 	case "chess":
@@ -86,6 +97,9 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 	case "other":
 		editText(bot, update, "Другое")
 		editKeyboard(bot, update, other_keyboard)
+	case "kiskis":
+		editText(bot, update, "кис-кис")
+		editKeyboard(bot, update, kiskis_keyboard)
 	case "vahteram", "lbtd", "kirill", "meloch", "nashe_leto", "kayen", "funk", "deshovye_dramy", "molchi", "middle", "slishkom_vlyublon", "may_bye", "samy_dorogoi", "batarei":
 		editText(bot, update, getSong(data))
 		editKeyboard(bot, update, chords_keyboard)
@@ -146,12 +160,18 @@ func handleText(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		}
 	case vigenere_phrase:
 		phrase = update.Message.Text
-		msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Введите ключ для шифрования строки")
+		msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Введите ключ шифрования строки")
 		send(bot, msg)
 		*flag = vigenere_key
 	case vigenere_key:
 		key := update.Message.Text
-		msg := tgbotapi.NewMessage(update.Message.Chat.ID, vigenere(phrase, key))
+		text := "Результат:\n"
+		if vigenere_switch > 0 {
+			text += vigenereDecode(phrase, key)
+		} else {
+			text += vigenereEncode(phrase, key)
+		}
+		msg := tgbotapi.NewMessage(update.Message.Chat.ID, text)
 		send(bot, msg)
 		*flag = no_flag
 	/*
