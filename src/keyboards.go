@@ -40,6 +40,16 @@ var code_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	),
 )
 
+var vigenere_keyboard = tgbotapi.NewInlineKeyboardMarkup(
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("Шифровать", "vigenere_encode"),
+		tgbotapi.NewInlineKeyboardButtonData("Расшифровать", "vigenere_decode"),
+	),
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("⬇ К шифрам", "code"),
+	),
+)
+
 var chess_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	tgbotapi.NewInlineKeyboardRow(
 		tgbotapi.NewInlineKeyboardButtonData("🧩 Мат в 1 ход", "mate_in1"),
