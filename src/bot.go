@@ -7,7 +7,7 @@ import (
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
-const (
+const ( // flags
 	no_flag = iota
 	caesar_phrase
 	caesar_shift
@@ -21,15 +21,9 @@ const (
 )
 
 func initBot() *tgbotapi.BotAPI {
-	tokenContent, err := ioutil.ReadFile("token.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
+	tokenContent, _ := ioutil.ReadFile("token.txt") // get token from txt file
 	token := string(tokenContent)
-	bot, err := tgbotapi.NewBotAPI(token)
-	if err != nil {
-		log.Panic(err)
-	}
+	bot, _ := tgbotapi.NewBotAPI(token) // initialize bot
 	bot.Debug = true
 	log.Printf("Authorized on account @%s", bot.Self.UserName)
 	return bot
@@ -42,7 +36,7 @@ func getUpdates(bot *tgbotapi.BotAPI) tgbotapi.UpdatesChannel {
 	return updates
 }
 
-func send(bot *tgbotapi.BotAPI, c tgbotapi.Chattable) {
+func send(bot *tgbotapi.BotAPI, c tgbotapi.Chattable) { // send anything sendable
 	if _, err := bot.Send(c); err != nil {
 		panic(err)
 	}
@@ -56,7 +50,7 @@ func editKeyboard(bot *tgbotapi.BotAPI, update tgbotapi.Update, keyboard tgbotap
 }
 
 func editText(bot *tgbotapi.BotAPI, update tgbotapi.Update, s string) {
-	if s != update.CallbackQuery.Message.Text {
+	if s != update.CallbackQuery.Message.Text { // update (edit) text only if it's different from previous
 		text := tgbotapi.NewEditMessageTextAndMarkup(update.CallbackQuery.Message.Chat.ID, update.CallbackQuery.Message.MessageID, s, *update.CallbackQuery.Message.ReplyMarkup)
 		if _, err := bot.Send(text); err != nil {
 			panic(err)

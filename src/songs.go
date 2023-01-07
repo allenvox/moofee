@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-const (
+const ( // chords
 	s        = "\nПорядок струн: 654321\nАккорды:\n"
 	Am       = "Am: 002210\n"
 	E        = "E: 022100\n"
