@@ -7,6 +7,13 @@ import (
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
+const ( // locales
+	en = iota
+	ru
+)
+
+var language int = en
+
 const ( // flags
 	no_flag = iota
 	caesar_phrase
