@@ -6,61 +6,60 @@ import (
 
 var start_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("🔐 Шифры", "code"),
-		tgbotapi.NewInlineKeyboardButtonData("🎸 Аккорды", "chords"),
+		tgbotapi.NewInlineKeyboardButtonData("🔐 "+cipher_locale[language], "code"),
+		tgbotapi.NewInlineKeyboardButtonData("🎸 "+chords_locale[language], "chords"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("♟️ Шахматы", "chess"),
-		tgbotapi.NewInlineKeyboardButtonData("🆘 Помощь", "help"),
+		tgbotapi.NewInlineKeyboardButtonData("♟️ "+chess_locale[language], "chess"),
+		tgbotapi.NewInlineKeyboardButtonData("🆘 "+help_locale[language], "help"),
 	),
 )
 
 var help_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("✍ Автор", "author"),
-		tgbotapi.NewInlineKeyboardButtonData("1️⃣0️⃣1️⃣ Версия", "version"),
+		tgbotapi.NewInlineKeyboardButtonData("✍ "+author_locale[language], "author"),
+		tgbotapi.NewInlineKeyboardButtonData("1️⃣0️⃣1️⃣ "+version_locale[language], "version"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("🕦 Время", "time"),
-		tgbotapi.NewInlineKeyboardButtonData("📅 Дата", "date"),
+		tgbotapi.NewInlineKeyboardButtonData("🕦 "+time_locale[language], "time"),
+		tgbotapi.NewInlineKeyboardButtonData("📅 "+date_locale[language], "date"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		//tgbotapi.NewInlineKeyboardButtonData("???", "quest"),
-		tgbotapi.NewInlineKeyboardButtonData("⬇ Обратно", "start"),
+		tgbotapi.NewInlineKeyboardButtonData("⬇ "+back_locale[language], "start"),
 	),
 )
 
 var code_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("Цезарь", "caesar"),
-		tgbotapi.NewInlineKeyboardButtonData("Виженер", "vigenere"),
+		tgbotapi.NewInlineKeyboardButtonData(caesar_locale[language], "caesar"),
+		tgbotapi.NewInlineKeyboardButtonData(vigenere_locale[language], "vigenere"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("⬇ Обратно", "start"),
+		tgbotapi.NewInlineKeyboardButtonData("⬇ "+back_locale[language], "start"),
 	),
 )
 
 var vigenere_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("Шифровать", "vigenere_encode"),
-		tgbotapi.NewInlineKeyboardButtonData("Расшифровать", "vigenere_decode"),
+		tgbotapi.NewInlineKeyboardButtonData(encode_locale[language], "vigenere_encode"),
+		tgbotapi.NewInlineKeyboardButtonData(decode_locale[language], "vigenere_decode"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("⬇ К шифрам", "code"),
+		tgbotapi.NewInlineKeyboardButtonData("⬇ "+cipher_locale[language], "code"),
 	),
 )
 
 var chess_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("🧩 Мат в 1 ход", "mate_in1"),
-		tgbotapi.NewInlineKeyboardButtonData("🧩 Мат в 2 хода", "mate_in2"),
+		tgbotapi.NewInlineKeyboardButtonData("🧩 "+mate_locale[language]+" 1"+mate_in_1_locale[language], "mate_in1"),
+		tgbotapi.NewInlineKeyboardButtonData("🧩 "+mate_locale[language]+" 2 "+move_locale[language], "mate_in2"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("🧩 Мат в 3 хода", "mate_in3"),
-		tgbotapi.NewInlineKeyboardButtonData("🧩 Мат в 4 хода", "mate_in4"),
+		tgbotapi.NewInlineKeyboardButtonData("🧩 "+mate_locale[language]+" 3 "+move_locale[language], "mate_in3"),
+		tgbotapi.NewInlineKeyboardButtonData("🧩 "+mate_locale[language]+" 4 "+move_locale[language], "mate_in4"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("⬇ Шахматы", "chess"),
+		tgbotapi.NewInlineKeyboardButtonData("⬇ "+chess_locale[language], "chess"),
 	),
 )
 
@@ -70,7 +69,7 @@ var mate_in1_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardButtonData("2", "m1_2"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("⬇ Шахматные задачи", "chess"),
+		tgbotapi.NewInlineKeyboardButtonData("⬇ "+chess_puzzles_locale[language], "chess"),
 	),
 )
 
@@ -80,7 +79,7 @@ var mate_in2_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardButtonData("2", "m2_2"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("⬇ Шахматные задачи", "chess"),
+		tgbotapi.NewInlineKeyboardButtonData("⬇ "+chess_puzzles_locale[language], "chess"),
 	),
 )
 
@@ -90,7 +89,7 @@ var mate_in3_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardButtonData("2", "m3_2"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("⬇ Шахматные задачи", "chess"),
+		tgbotapi.NewInlineKeyboardButtonData("⬇ "+chess_puzzles_locale[language], "chess"),
 	),
 )
 
@@ -100,7 +99,7 @@ var mate_in4_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardButtonData("2", "m4_2"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("⬇ Шахматные задачи", "chess"),
+		tgbotapi.NewInlineKeyboardButtonData("⬇ "+chess_puzzles_locale[language], "chess"),
 	),
 )
 
@@ -111,10 +110,10 @@ var chords_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	),
 	tgbotapi.NewInlineKeyboardRow(
 		tgbotapi.NewInlineKeyboardButtonData("кис-кис", "kiskis"),
-		tgbotapi.NewInlineKeyboardButtonData("Другое", "other"),
+		tgbotapi.NewInlineKeyboardButtonData(other_locale[language], "other"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("⬇ Обратно", "start"),
+		tgbotapi.NewInlineKeyboardButtonData("⬇ "+back_locale[language], "start"),
 	),
 )
 
@@ -128,7 +127,7 @@ var strykalo_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardButtonData("Фанк", "funk"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("⬇ Исполнители", "chords"),
+		tgbotapi.NewInlineKeyboardButtonData("⬇ "+artists_locale[language], "chords"),
 	),
 )
 
@@ -142,7 +141,7 @@ var nervy_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardButtonData("Батареи", "batarei"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("⬇ Исполнители", "chords"),
+		tgbotapi.NewInlineKeyboardButtonData("⬇ "+artists_locale[language], "chords"),
 	),
 )
 
@@ -156,7 +155,7 @@ var kiskis_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardButtonData("ЛБТД", "lbtd"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("⬇ Исполнители ", "chords"),
+		tgbotapi.NewInlineKeyboardButtonData("⬇ "+artists_locale[language], "chords"),
 	),
 )
 
@@ -166,6 +165,6 @@ var other_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardButtonData("Вахтёрам", "vahteram"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("⬇ Исполнители", "chords"),
+		tgbotapi.NewInlineKeyboardButtonData("⬇ "+artists_locale[language], "chords"),
 	),
 )
