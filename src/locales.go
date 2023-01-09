@@ -20,7 +20,7 @@ var ( // keyboards
 	other_locale         = []string{"Other", "Другое"}
 	chess_puzzles_locale = []string{"Chess puzzles", "Шахматные задачи"}
 	mate_locale          = []string{"Mate in", "Мат в"}
-	mate_in_1_locale     = []string{"", "ход"}
-	move_locale          = []string{"", "хода"}
+	move_locale          = []string{"move", "ход"}
+	moves_locale         = []string{"moves", "хода"}
 	strings_order_locale = []string{"Guitar strings order", "Порядок струн"}
 )
