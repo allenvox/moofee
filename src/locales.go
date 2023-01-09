@@ -22,4 +22,5 @@ var ( // keyboards
 	mate_locale          = []string{"Mate in", "Мат в"}
 	mate_in_1_locale     = []string{"", "ход"}
 	move_locale          = []string{"", "хода"}
+	strings_order_locale = []string{"Guitar strings order", "Порядок струн"}
 )
