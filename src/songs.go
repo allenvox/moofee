@@ -5,8 +5,8 @@ import (
 	"os"
 )
 
-const ( // chords
-	s        = "\nПорядок струн: 654321\nАккорды:\n"
+var ( // chords
+	s        = "\n" + strings_order_locale[language] + ": 654321\n" + chords_locale[language] + ":\n"
 	Am       = "Am: 002210\n"
 	E        = "E: 022100\n"
 	Em       = "Em: 022000\n"
