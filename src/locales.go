@@ -23,4 +23,9 @@ var ( // keyboards
 	move_locale          = []string{"move", "ход"}
 	moves_locale         = []string{"moves", "хода"}
 	strings_order_locale = []string{"Guitar strings order", "Порядок струн"}
+	choose_locale        = []string{"Choose", "Выбери"}
+	result_locale        = []string{"Result", "Результат"}
+	today_locale         = []string{"Today", "Сегодня"}
+	in_nsk_locale        = []string{"in Novosibirsk", "в Новосибирске"}
+	working_locale       = []string{"I'm working on", "Я работаю на"}
 )
