@@ -51,7 +51,7 @@ var vigenere_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 
 var chess_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	tgbotapi.NewInlineKeyboardRow(
-		tgbotapi.NewInlineKeyboardButtonData("🧩 "+mate_locale[language]+" 1"+move_locale[language], "mate_in1"),
+		tgbotapi.NewInlineKeyboardButtonData("🧩 "+mate_locale[language]+" 1 "+move_locale[language], "mate_in1"),
 		tgbotapi.NewInlineKeyboardButtonData("🧩 "+mate_locale[language]+" 2 "+moves_locale[language], "mate_in2"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
