@@ -68,16 +68,16 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		editText(bot, update, "Выбери тип шахматной задачи")
 		editKeyboard(bot, update, chess_keyboard)
 	case "mate_in1":
-		editText(bot, update, "🧩 Мат в 1 ход")
+		editText(bot, update, "🧩 "+mate_locale[language]+" 1 "+move_locale[language])
 		editKeyboard(bot, update, mate_in1_keyboard)
 	case "mate_in2":
-		editText(bot, update, "🧩 Мат в 2 хода")
+		editText(bot, update, "🧩 "+mate_locale[language]+" 2 "+moves_locale[language])
 		editKeyboard(bot, update, mate_in2_keyboard)
 	case "mate_in3":
-		editText(bot, update, "🧩 Мат в 3 хода")
+		editText(bot, update, "🧩 "+mate_locale[language]+" 3 "+moves_locale[language])
 		editKeyboard(bot, update, mate_in3_keyboard)
 	case "mate_in4":
-		editText(bot, update, "🧩 Мат в 4 хода")
+		editText(bot, update, "🧩 "+mate_locale[language]+" 4 "+moves_locale[language])
 		editKeyboard(bot, update, mate_in4_keyboard)
 	case "m1_1", "m1_2", "m2_1", "m2_2", "m3_1", "m3_2", "m4_1", "m4_2":
 		picture := tgbotapi.NewPhoto(update.CallbackQuery.Message.Chat.ID, tgbotapi.FilePath("puzzles/"+data+".png"))
@@ -106,31 +106,33 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 	case "date":
 		currentTime := time.Now()
 		day := time.Now().Format("Monday")
-		switch day {
-		case "Monday":
-			day = "понедельник"
-		case "Tuesday":
-			day = "вторник"
-		case "Wednesday":
-			day = "среда"
-		case "Thursday":
-			day = "четверг"
-		case "Friday":
-			day = "пятница"
-		case "Saturday":
-			day = "суббота"
-		case "Sunday":
-			day = "воскресенье"
+		if language == ru {
+			switch day {
+			case "Monday":
+				day = "понедельник"
+			case "Tuesday":
+				day = "вторник"
+			case "Wednesday":
+				day = "среда"
+			case "Thursday":
+				day = "четверг"
+			case "Friday":
+				day = "пятница"
+			case "Saturday":
+				day = "суббота"
+			case "Sunday":
+				day = "воскресенье"
+			}
 		}
-		editText(bot, update, currentTime.Format("Сегодня 02.01.2006, "+day))
+		editText(bot, update, currentTime.Format(today_locale[language]+" is 02.01.2006, "+day))
 	case "time":
-		editText(bot, update, time.Now().Format("Время в Новосибирске (GMT+7): 15:04"))
+		editText(bot, update, time.Now().Format(time_locale[language]+" "+in_nsk_locale[language]+" (GMT+7): 15:04"))
 	case "author":
-		editText(bot, update, "Разработчик — @allenvox")
+		editText(bot, update, author_locale[language]+" — @allenvox")
 	case "version":
-		editText(bot, update, "Я работаю на "+runtime.Version())
+		editText(bot, update, working_locale[language]+" "+runtime.Version())
 	default:
-		editText(bot, update, "Выбери то, что нужно")
+		editText(bot, update, choose_locale[language])
 		editKeyboard(bot, update, start_keyboard)
 	}
 }
@@ -165,7 +167,7 @@ func handleText(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		*flag = vigenere_key
 	case vigenere_key:
 		key := update.Message.Text
-		text := "Результат:\n"
+		text := result_locale[language] + ":\n"
 		if vigenere_switch > 0 {
 			text += vigenereDecode(phrase, key)
 		} else {
@@ -174,37 +176,11 @@ func handleText(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, text)
 		send(bot, msg)
 		*flag = no_flag
-		/*case quest:
-		switch strings.ToLower(update.Message.Text) {
-		case quest_keywords[0]:
-			msg := tgbotapi.NewMessage(update.Message.Chat.ID, quest_phrases[1])
-			send(bot, msg)
-		case quest_keywords[1]:
-			msg := tgbotapi.NewMessage(update.Message.Chat.ID, quest_phrases[2])
-			send(bot, msg)
-		case quest_keywords[2]:
-			msg := tgbotapi.NewMessage(update.Message.Chat.ID, quest_phrases[3])
-			send(bot, msg)
-		case quest_keywords[3]:
-			msg := tgbotapi.NewMessage(update.Message.Chat.ID, quest_phrases[4])
-			send(bot, msg)
-		case quest_keywords[4]:
-			msg := tgbotapi.NewMessage(update.Message.Chat.ID, quest_phrases[5])
-			send(bot, msg)
-		case quest_keywords[5]:
-			msg := tgbotapi.NewMessage(update.Message.Chat.ID, quest_phrases[6])
-			send(bot, msg)
-			*flag = no_flag
-		default:
-			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "🤔 Кажется, что-то не то...\nПопробуй ввести другое.")
-			send(bot, msg)
-		}
-		*/
 	case m1, m2, m3, m4:
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, handlePuzzle(update, flag))
 		send(bot, msg)
 	default:
-		msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Выбери то, что нужно")
+		msg := tgbotapi.NewMessage(update.Message.Chat.ID, choose_locale[language])
 		msg.ReplyMarkup = start_keyboard
 		send(bot, msg)
 	}
