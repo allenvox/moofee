@@ -100,9 +100,6 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 	case "kiskis":
 		editText(bot, update, "кис-кис")
 		editKeyboard(bot, update, kiskis_keyboard)
-	case "vahteram", "lbtd", "kirill", "meloch", "nashe_leto", "kayen", "funk", "deshovye_dramy", "molchi", "middle", "slishkom_vlyublon", "may_bye", "samy_dorogoi", "batarei":
-		editText(bot, update, getSong(data))
-		editKeyboard(bot, update, chords_keyboard)
 	case "date":
 		currentTime := time.Now()
 		day := time.Now().Format("Monday")
@@ -132,8 +129,8 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 	case "version":
 		editText(bot, update, working_locale[language]+" "+runtime.Version())
 	default:
-		editText(bot, update, choose_locale[language])
-		editKeyboard(bot, update, start_keyboard)
+		editText(bot, update, getSong(data))
+		editKeyboard(bot, update, chords_keyboard)
 	}
 }
 
@@ -143,17 +140,17 @@ func handleText(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 	switch *flag {
 	case caesar_phrase:
 		phrase = update.Message.Text
-		msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Введите символьное смещение (например, для преобразования А в Б — 1, А в Я — 32)")
+		msg := tgbotapi.NewMessage(update.Message.Chat.ID, shift_message_locale[language])
 		send(bot, msg)
 		*flag = caesar_shift
 	case caesar_shift:
 		shift, err := strconv.Atoi(update.Message.Text)
 		if err != nil {
-			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Значение смещения должно быть числовым")
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, shift_value_mustbe_locale[language]+" "+numeric_locale[language])
 			send(bot, msg)
 		}
 		if shift < 0 {
-			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Значение смещения должно быть больше нуля")
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, shift_value_mustbe_locale[language]+" "+natural_locale[language])
 			send(bot, msg)
 		} else {
 			msg := tgbotapi.NewMessage(update.Message.Chat.ID, caesar(phrase, shift))
