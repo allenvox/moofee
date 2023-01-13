@@ -15,6 +15,8 @@ var start_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	),
 )
 
+var current_language string
+
 var help_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	tgbotapi.NewInlineKeyboardRow(
 		tgbotapi.NewInlineKeyboardButtonData("✍ "+author_locale[language], "author"),
@@ -25,6 +27,7 @@ var help_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 		tgbotapi.NewInlineKeyboardButtonData("📅 "+date_locale[language], "date"),
 	),
 	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData(current_language+" "+language_locale[language], "language"),
 		tgbotapi.NewInlineKeyboardButtonData("⬇ "+back_locale[language], "start"),
 	),
 )
@@ -166,5 +169,12 @@ var other_keyboard = tgbotapi.NewInlineKeyboardMarkup(
 	),
 	tgbotapi.NewInlineKeyboardRow(
 		tgbotapi.NewInlineKeyboardButtonData("⬇ "+artists_locale[language], "chords"),
+	),
+)
+
+var language_keyboard = tgbotapi.NewInlineKeyboardMarkup(
+	tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData("🇬🇧", "en"),
+		tgbotapi.NewInlineKeyboardButtonData("🇷🇺", "ru"),
 	),
 )
