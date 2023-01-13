@@ -25,7 +25,13 @@ func handleMessage(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 }
 
 func handleCommands(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
-	send(bot, tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, "У меня нет команд, тыкай кнопки"))
+	if update.Message.Text == "/start" {
+		msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Choose the language\nВыбери язык")
+		msg.ReplyMarkup = language_keyboard
+		send(bot, msg)
+	} else {
+		send(bot, tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, no_commands_locale[language]))
+	}
 }
 
 var vigenere_switch = 0
@@ -37,15 +43,25 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		panic(err)
 	}
 	switch data {
-	/*case "quest":
-	msg := tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, quest_phrases[0])
-	send(bot, msg)
-	*flag = quest*/
+	case "language":
+		editText(bot, update, "Choose the language\nВыбери язык")
+		editKeyboard(bot, update, language_keyboard)
+	case "start", "en", "ru":
+		if data == "ru" {
+			language = ru
+		}
+		editText(bot, update, choose_locale[language])
+		editKeyboard(bot, update, start_keyboard)
 	case "code":
-		editText(bot, update, "Шифры")
+		editText(bot, update, cipher_locale[language])
 		editKeyboard(bot, update, code_keyboard)
 	case "help":
-		editText(bot, update, "Помощь")
+		if language == en {
+			current_language = "🇬🇧"
+		} else {
+			current_language = "🇷🇺"
+		}
+		editText(bot, update, help_locale[language])
 		editKeyboard(bot, update, help_keyboard)
 	case "caesar":
 		msg := tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, "Введите фразу для шифрования")
@@ -65,7 +81,7 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		send(bot, msg)
 		*flag = vigenere_phrase
 	case "chess":
-		editText(bot, update, "Выбери тип шахматной задачи")
+		editText(bot, update, choose_puzzle_type_locale[language])
 		editKeyboard(bot, update, chess_keyboard)
 	case "mate_in1":
 		editText(bot, update, "🧩 "+mate_locale[language]+" 1 "+move_locale[language])
@@ -86,7 +102,7 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		msg := tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, "Введите первый ход")
 		send(bot, msg)
 	case "chords":
-		editText(bot, update, "Аккорды")
+		editText(bot, update, chords_locale[language])
 		editKeyboard(bot, update, chords_keyboard)
 	case "nervy":
 		editText(bot, update, "Нервы")
@@ -95,7 +111,7 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		editText(bot, update, "Валентин Стрыкало")
 		editKeyboard(bot, update, strykalo_keyboard)
 	case "other":
-		editText(bot, update, "Другое")
+		editText(bot, update, other_locale[language])
 		editKeyboard(bot, update, other_keyboard)
 	case "kiskis":
 		editText(bot, update, "кис-кис")
@@ -159,7 +175,7 @@ func handleText(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		}
 	case vigenere_phrase:
 		phrase = update.Message.Text
-		msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Введите ключ шифрования строки")
+		msg := tgbotapi.NewMessage(update.Message.Chat.ID, enter_cipher_key_locale[language])
 		send(bot, msg)
 		*flag = vigenere_key
 	case vigenere_key:
