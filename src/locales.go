@@ -32,4 +32,8 @@ var ( // keyboards
 	shift_value_mustbe_locale = []string{"Shift value must be", "Значение смещения должно быть"}
 	numeric_locale            = []string{"a number", "числовым"}
 	natural_locale            = []string{"more than zero", "больше нуля"}
+	enter_cipher_key_locale   = []string{"Enter the cipher key", "Введите ключ шифрования"}
+	choose_puzzle_type_locale = []string{"Choose the puzzle type", "Выбери тип шахматной задачи"}
+	no_commands_locale        = []string{"I don't have such command. Use the buttons!", "У меня нет такой команды. Используй кнопки!"}
+	language_locale           = []string{"Language", "Язык"}
 )
