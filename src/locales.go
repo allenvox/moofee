@@ -36,4 +36,9 @@ var ( // keyboards
 	choose_puzzle_type_locale = []string{"Choose the puzzle type", "Выбери тип шахматной задачи"}
 	no_commands_locale        = []string{"I don't have such command. Use the buttons!", "У меня нет такой команды. Используй кнопки!"}
 	language_locale           = []string{"Language", "Язык"}
+	first_move_locale         = []string{"Enter the first move", "Введите первый ход"}
+	coding_locale             = []string{"coding", "шифрования"}
+	en_locale                 = []string{"en", ""}
+	de_locale                 = []string{"de", "де"}
+	enter_phrase_locale       = []string{"Enter a phrase to ", "Введите фразу для "}
 )
