@@ -41,4 +41,14 @@ var ( // keyboards
 	en_locale                 = []string{"en", ""}
 	de_locale                 = []string{"de", "де"}
 	enter_phrase_locale       = []string{"Enter a phrase to ", "Введите фразу для "}
+	chess_phrases             = [][]string{
+		{"❌ Wrong move\nTry another one", "❌ Неверный ход\nПопробуйте другой"},
+		{"✅ A nice start. Enter the second move", "✅ Отличное начало. Введите второй ход"},
+		{"✅ Well done! Enter the third move", "✅ Замечательно! Введите третий ход"},
+		{"🎂 Congrats!\n✅ You've completed this chess puzzle ♟", "🎂 Поздравляю!\n✅ Вы выполнили шахматную задачу ♟"},
+		{"✅ Third move is right! Enter the fourth move", "✅ Третий ход верный! Введите четвёртый ход"},
+	}
+	chess_task_locale = []string{"Task is to checkmate the enemy in ", "Задача — поставить мат за "}
+	plural_locale     = []string{"s", "а"}
+	chess_move_locale = []string{"To enter the move write: previous_place-new_place\nExample: e2-e4", "Формат хода (в сообщении): прошлое_место_фигуры-новое_место_фигуры\nПример: e2-e4"}
 )
