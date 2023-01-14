@@ -9,24 +9,16 @@ import (
 var chess_puzzle_number = 0
 
 func puzzleDescription(name string, flag *int) string {
-	var result string = "Задача — поставить мат за " + string([]rune(name)[1]) + " ход"
+	var result string = chess_task_locale[language] + string([]rune(name)[1]) + move_locale[language]
 	if *flag >= m2 {
-		result += "а"
+		result += plural_locale[language]
 	}
 	result += "\n\n"
 	chess_puzzle_number, _ = strconv.Atoi(string([]rune(name)[3]))
-	return result + "Формат хода (в сообщении): прошлое_место_фигуры-новое_место_фигуры\nПример: e2-e4"
+	return result + chess_move_locale[language]
 }
 
 var move int = 1
-var chess_phrases = []string{
-	"❌ Неверный ход\nПопробуйте другой",
-	"✅ Отличное начало. Введите второй ход",
-	"✅ Замечательно! Введите третий ход",
-	"🎂 Поздравляю!\n✅ Вы выполнили шахматную задачу ♟",
-	"✅ Третий ход верный! Введите четвёртый ход",
-}
-
 var chess_solutions = [][][]string{
 	{ // mate in 1
 		{"g5-f7"},
@@ -56,47 +48,47 @@ func handlePuzzle(update tgbotapi.Update, flag *int) string {
 	switch move {
 	case 1:
 		if text != move_solution {
-			result = chess_phrases[0]
+			result = chess_phrases[0][language]
 		} else {
 			if *flag < m2 {
-				result = chess_phrases[3]
+				result = chess_phrases[3][language]
 				*flag = no_flag
 			} else {
-				result = chess_phrases[1]
+				result = chess_phrases[1][language]
 				move++
 			}
 		}
 	case 2:
 		if text != move_solution {
-			result = chess_phrases[0]
+			result = chess_phrases[0][language]
 		} else {
 			if *flag < m3 {
-				result = chess_phrases[3]
+				result = chess_phrases[3][language]
 				*flag = no_flag
 				move--
 			} else {
-				result = chess_phrases[2]
+				result = chess_phrases[2][language]
 				move++
 			}
 		}
 	case 3:
 		if text != move_solution {
-			result = chess_phrases[0]
+			result = chess_phrases[0][language]
 		} else {
 			if *flag < m4 {
-				result = chess_phrases[3]
+				result = chess_phrases[3][language]
 				*flag = no_flag
 				move = 1
 			} else {
-				result = chess_phrases[4]
+				result = chess_phrases[4][language]
 				move++
 			}
 		}
 	case 4:
 		if text != move_solution {
-			result = chess_phrases[0]
+			result = chess_phrases[0][language]
 		} else {
-			result = chess_phrases[3]
+			result = chess_phrases[3][language]
 			*flag = no_flag
 			move = 1
 		}
