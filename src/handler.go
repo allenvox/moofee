@@ -64,19 +64,21 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		editText(bot, update, help_locale[language])
 		editKeyboard(bot, update, help_keyboard)
 	case "caesar":
-		msg := tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, "Введите фразу для шифрования")
+		msg := tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, enter_phrase_locale[language]+en_locale[language]+coding_locale[language])
 		send(bot, msg)
 		*flag = caesar_phrase
 	case "vigenere":
-		editText(bot, update, "Шифр Виженера")
+		editText(bot, update, vigenere_locale[language])
 		editKeyboard(bot, update, vigenere_keyboard)
 	case "vigenere_encode", "vigenere_decode":
-		text := "Введите фразу для "
+		text := enter_phrase_locale[language]
 		if data == "vigenere_decode" {
-			text += "де"
+			text += de_locale[language]
 			vigenere_switch = 1
+		} else {
+			text += en_locale[language]
 		}
-		text += "шифрования"
+		text += coding_locale[language]
 		msg := tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, text)
 		send(bot, msg)
 		*flag = vigenere_phrase
@@ -99,7 +101,7 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		picture := tgbotapi.NewPhoto(update.CallbackQuery.Message.Chat.ID, tgbotapi.FilePath("puzzles/"+data+".png"))
 		picture.Caption = puzzleDescription(data, flag)
 		send(bot, picture)
-		msg := tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, "Введите первый ход")
+		msg := tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, first_move_locale[language])
 		send(bot, msg)
 	case "chords":
 		editText(bot, update, chords_locale[language])
