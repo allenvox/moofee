@@ -14,7 +14,7 @@ func caesar(text string, shift int) string {
 		}
 		char := chars[i] + rune(shift)
 		if char > 'я' {
-			char = char - 'я' + 'а'
+			char -= 'я'
 		}
 		chars[i] = char
 	}
@@ -33,7 +33,7 @@ func vigenereEncode(text string, key string) string {
 		letter %= keylen
 		char := textChars[i] + keyChars[letter]
 		if char > 'я' {
-			char = char - 'я'
+			char -= 'я'
 		}
 		textChars[i] = char
 		letter++
@@ -53,7 +53,7 @@ func vigenereDecode(text string, key string) string {
 		letter %= keylen
 		char := textChars[i] - keyChars[letter]
 		if char < 'а' {
-			char = char + 'а'
+			char += 'а'
 		}
 		textChars[i] = char
 		letter++
