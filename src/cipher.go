@@ -6,15 +6,24 @@ import (
 )
 
 func caesar(text string, shift int) string {
-	shift = (shift%33 + 33) % 33 // only between 0 and 32
 	chars := []rune(strings.ToLower(text))
 	for i := 0; i < len(chars); i++ {
-		if !unicode.IsLetter(chars[i]) {
+		if chars[i] > 'a' && chars[i] < 'z' { // english
+			shift = (shift%26 + 26) % 26 // only between 0 and 25
+		} else if chars[i] > 'а' && chars[i] < 'я' { // russian
+			shift = (shift%33 + 33) % 33 // only between 0 and 32
+		} else {
 			continue // skip
 		}
 		char := chars[i] + rune(shift)
-		if char > 'я' {
-			char -= 'я'
+		if chars[i] > 'a' && chars[i] < 'z' {
+			if char > 'z' {
+				char -= 'z'
+			}
+		} else if chars[i] > 'а' && chars[i] < 'я' {
+			if char > 'я' {
+				char -= 'я'
+			}
 		}
 		chars[i] = char
 	}
