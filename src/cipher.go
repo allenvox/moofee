@@ -2,7 +2,6 @@ package main
 
 import (
 	"strings"
-	"unicode"
 )
 
 func caesar(text string, shift int) string {
@@ -36,13 +35,16 @@ func vigenereEncode(text string, key string) string {
 	keylen := len(keyChars)
 	letter := 0
 	for i := 0; i < len(textChars); i++ {
-		if !unicode.IsLetter(textChars[i]) {
-			continue
-		}
 		letter %= keylen
 		char := textChars[i] + keyChars[letter]
-		if char > 'я' {
-			char -= 'я'
+		if textChars[i] > 'a' && textChars[i] < 'z' {
+			if char > 'z' {
+				char -= 'z'
+			}
+		} else if textChars[i] > 'а' && textChars[i] < 'я' {
+			if char > 'я' {
+				char -= 'я'
+			}
 		}
 		textChars[i] = char
 		letter++
@@ -56,13 +58,16 @@ func vigenereDecode(text string, key string) string {
 	keylen := len(keyChars)
 	letter := 0
 	for i := 0; i < len(textChars); i++ {
-		if !unicode.IsLetter(textChars[i]) {
-			continue
-		}
 		letter %= keylen
 		char := textChars[i] - keyChars[letter]
-		if char < 'а' {
-			char += 'а'
+		if textChars[i] > 'a' && textChars[i] < 'z' {
+			if char < 'a' {
+				char += 'a'
+			}
+		} else if textChars[i] > 'а' && textChars[i] < 'я' {
+			if char < 'а' {
+				char += 'а'
+			}
 		}
 		textChars[i] = char
 		letter++
