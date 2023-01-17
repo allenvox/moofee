@@ -7,21 +7,21 @@ import (
 func caesar(text string, shift int) string {
 	chars := []rune(strings.ToLower(text))
 	for i := 0; i < len(chars); i++ {
-		if chars[i] > 'a' && chars[i] < 'z' { // english
+		if chars[i] >= 'a' && chars[i] <= 'z' { // english
 			shift = (shift%26 + 26) % 26 // only between 0 and 25
-		} else if chars[i] > 'а' && chars[i] < 'я' { // russian
+		} else if chars[i] >= 'а' && chars[i] <= 'я' { // russian
 			shift = (shift%33 + 33) % 33 // only between 0 and 32
 		} else {
 			continue // skip
 		}
 		char := chars[i] + rune(shift)
-		if chars[i] > 'a' && chars[i] < 'z' {
+		if chars[i] >= 'a' && chars[i] <= 'z' {
 			if char > 'z' {
-				char -= 'z'
+				char -= 26
 			}
-		} else if chars[i] > 'а' && chars[i] < 'я' {
+		} else if chars[i] >= 'а' && chars[i] <= 'я' {
 			if char > 'я' {
-				char -= 'я'
+				char -= 33
 			}
 		}
 		chars[i] = char
@@ -37,11 +37,11 @@ func vigenereEncode(text string, key string) string {
 	for i := 0; i < len(textChars); i++ {
 		letter %= keylen
 		char := textChars[i] + keyChars[letter]
-		if textChars[i] > 'a' && textChars[i] < 'z' {
+		if textChars[i] >= 'a' && textChars[i] <= 'z' {
 			if char > 'z' {
 				char -= 'z'
 			}
-		} else if textChars[i] > 'а' && textChars[i] < 'я' {
+		} else if textChars[i] >= 'а' && textChars[i] <= 'я' {
 			if char > 'я' {
 				char -= 'я'
 			}
@@ -60,11 +60,11 @@ func vigenereDecode(text string, key string) string {
 	for i := 0; i < len(textChars); i++ {
 		letter %= keylen
 		char := textChars[i] - keyChars[letter]
-		if textChars[i] > 'a' && textChars[i] < 'z' {
+		if textChars[i] >= 'a' && textChars[i] <= 'z' {
 			if char < 'a' {
 				char += 'a'
 			}
-		} else if textChars[i] > 'а' && textChars[i] < 'я' {
+		} else if textChars[i] >= 'а' && textChars[i] <= 'я' {
 			if char < 'а' {
 				char += 'а'
 			}
