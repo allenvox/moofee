@@ -40,7 +40,7 @@ var ( // keyboards
 	coding_locale             = []string{"coding", "шифрования"}
 	en_locale                 = []string{"en", ""}
 	de_locale                 = []string{"de", "де"}
-	enter_phrase_locale       = []string{"Enter a phrase to ", "Введите фразу для "}
+	enter_phrase_locale       = []string{"Enter a phrase for ", "Введите фразу для "}
 	chess_phrases             = [][]string{
 		{"❌ Wrong move\nTry another one", "❌ Неверный ход\nПопробуйте другой"},
 		{"✅ A nice start. Enter the second move", "✅ Отличное начало. Введите второй ход"},
