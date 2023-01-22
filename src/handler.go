@@ -51,10 +51,10 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 			language = ru
 		}
 		editText(bot, update, choose_locale[language])
-		editKeyboard(bot, update, start_keyboard)
+		editKeyboard(bot, update, start_keyboard[language])
 	case "code":
 		editText(bot, update, cipher_locale[language])
-		editKeyboard(bot, update, code_keyboard)
+		editKeyboard(bot, update, code_keyboard[language])
 	case "help":
 		if language == en {
 			current_language = "🇬🇧"
@@ -62,14 +62,14 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 			current_language = "🇷🇺"
 		}
 		editText(bot, update, help_locale[language])
-		editKeyboard(bot, update, help_keyboard)
+		editKeyboard(bot, update, help_keyboard[language])
 	case "caesar":
 		msg := tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, enter_phrase_locale[language]+en_locale[language]+coding_locale[language])
 		send(bot, msg)
 		*flag = caesar_phrase
 	case "vigenere":
 		editText(bot, update, vigenere_locale[language])
-		editKeyboard(bot, update, vigenere_keyboard)
+		editKeyboard(bot, update, vigenere_keyboard[language])
 	case "vigenere_encode", "vigenere_decode":
 		text := enter_phrase_locale[language]
 		if data == "vigenere_decode" {
@@ -84,19 +84,19 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		*flag = vigenere_phrase
 	case "chess":
 		editText(bot, update, choose_puzzle_type_locale[language])
-		editKeyboard(bot, update, chess_keyboard)
+		editKeyboard(bot, update, chess_keyboard[language])
 	case "mate_in1":
 		editText(bot, update, "🧩 "+mate_locale[language]+" 1 "+move_locale[language])
-		editKeyboard(bot, update, mate_in1_keyboard)
+		editKeyboard(bot, update, mate_in1_keyboard[language])
 	case "mate_in2":
 		editText(bot, update, "🧩 "+mate_locale[language]+" 2 "+moves_locale[language])
-		editKeyboard(bot, update, mate_in2_keyboard)
+		editKeyboard(bot, update, mate_in2_keyboard[language])
 	case "mate_in3":
 		editText(bot, update, "🧩 "+mate_locale[language]+" 3 "+moves_locale[language])
-		editKeyboard(bot, update, mate_in3_keyboard)
+		editKeyboard(bot, update, mate_in3_keyboard[language])
 	case "mate_in4":
 		editText(bot, update, "🧩 "+mate_locale[language]+" 4 "+moves_locale[language])
-		editKeyboard(bot, update, mate_in4_keyboard)
+		editKeyboard(bot, update, mate_in4_keyboard[language])
 	case "m1_1", "m1_2", "m2_1", "m2_2", "m3_1", "m3_2", "m4_1", "m4_2":
 		picture := tgbotapi.NewPhoto(update.CallbackQuery.Message.Chat.ID, tgbotapi.FilePath("puzzles/"+data+".png"))
 		picture.Caption = puzzleDescription(data, flag)
@@ -105,19 +105,19 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		send(bot, msg)
 	case "chords":
 		editText(bot, update, chords_locale[language])
-		editKeyboard(bot, update, chords_keyboard)
+		editKeyboard(bot, update, chords_keyboard[language])
 	case "nervy":
 		editText(bot, update, "Нервы")
-		editKeyboard(bot, update, nervy_keyboard)
+		editKeyboard(bot, update, nervy_keyboard[language])
 	case "strykalo":
 		editText(bot, update, "Валентин Стрыкало")
-		editKeyboard(bot, update, strykalo_keyboard)
+		editKeyboard(bot, update, strykalo_keyboard[language])
 	case "other":
 		editText(bot, update, other_locale[language])
-		editKeyboard(bot, update, other_keyboard)
+		editKeyboard(bot, update, other_keyboard[language])
 	case "kiskis":
 		editText(bot, update, "кис-кис")
-		editKeyboard(bot, update, kiskis_keyboard)
+		editKeyboard(bot, update, kiskis_keyboard[language])
 	case "date":
 		currentTime := time.Now()
 		day := time.Now().Format("Monday")
@@ -148,7 +148,7 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		editText(bot, update, working_locale[language]+" "+runtime.Version())
 	default:
 		editText(bot, update, getSong(data))
-		editKeyboard(bot, update, chords_keyboard)
+		editKeyboard(bot, update, chords_keyboard[language])
 	}
 }
 
