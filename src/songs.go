@@ -83,6 +83,8 @@ func getSong(data string) string {
 		song = "Бумбокс — Вахтёрам\n" + s + Am + G + Dm + E
 	case "rayoni":
 		song = "Звери — Районы-кварталы\n" + s + Am + Dm + E + F
+	case "goris":
+		song = "Валентин Стрыкало — Гори\n" + s + Am + F + C + G
 	}
 	return song + "\n" + text
 }
