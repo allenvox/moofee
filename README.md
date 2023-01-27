@@ -4,15 +4,6 @@
 ![Telegram Bot](https://img.shields.io/badge/Telegram-%40moofee__bot-blue?logo=telegram&link=https://t.me/moofee_bot)
 ![GitHub last commit](https://img.shields.io/github/last-commit/allenvox/moofee-bot)
 <br><br>Universal Telegram bot built with [@go-telegram-bot-api](https://github.com/go-telegram-bot-api)<br>
-<br>Compile an executable:<br>
-```
-make
-```
-<br>Run a compiled executable:<br>
-```
-./bot
-```
-<br>Compile & run:<br>
-```
-make run
-```
+<br>To compile an executable type `make` in terminal<br>
+<br>To run a compiled executable: `./bot`<br>
+<br>To compile & immediately run: `make run`<br>
