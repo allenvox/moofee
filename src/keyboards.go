@@ -256,6 +256,7 @@ var strykalo_keyboard = []tgbotapi.InlineKeyboardMarkup{
 		),
 		tgbotapi.NewInlineKeyboardRow(
 			tgbotapi.NewInlineKeyboardButtonData("Гори", "goris"),
+			tgbotapi.NewInlineKeyboardButtonData("Всё решено", "vsyo_resheno"),
 		),
 		tgbotapi.NewInlineKeyboardRow(
 			tgbotapi.NewInlineKeyboardButtonData("⬇ "+artists_locale[0], "chords"),
@@ -272,6 +273,7 @@ var strykalo_keyboard = []tgbotapi.InlineKeyboardMarkup{
 		),
 		tgbotapi.NewInlineKeyboardRow(
 			tgbotapi.NewInlineKeyboardButtonData("Гори", "goris"),
+			tgbotapi.NewInlineKeyboardButtonData("Всё решено", "vsyo_resheno"),
 		),
 		tgbotapi.NewInlineKeyboardRow(
 			tgbotapi.NewInlineKeyboardButtonData("⬇ "+artists_locale[1], "chords"),
