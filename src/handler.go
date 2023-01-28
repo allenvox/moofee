@@ -196,7 +196,7 @@ func handleText(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 		send(bot, msg)
 	default:
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, choose_locale[language])
-		msg.ReplyMarkup = start_keyboard
+		msg.ReplyMarkup = start_keyboard[language]
 		send(bot, msg)
 	}
 }
