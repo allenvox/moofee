@@ -50,9 +50,7 @@ func send(bot *tgbotapi.BotAPI, c tgbotapi.Chattable) { // send anything sendabl
 
 func editKeyboard(bot *tgbotapi.BotAPI, update tgbotapi.Update, keyboard tgbotapi.InlineKeyboardMarkup) {
 	markup := tgbotapi.NewEditMessageReplyMarkup(update.CallbackQuery.Message.Chat.ID, update.CallbackQuery.Message.MessageID, keyboard)
-	if _, err := bot.Send(markup); err != nil {
-		panic(err)
-	}
+	send(bot, markup)
 }
 
 func editText(bot *tgbotapi.BotAPI, update tgbotapi.Update, s string) {
