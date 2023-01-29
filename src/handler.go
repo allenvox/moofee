@@ -9,23 +9,23 @@ import (
 )
 
 func handleMessage(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
-	if update.Message != nil {
-		if update.Message.Text != "" && !update.Message.IsCommand() {
+	if update.Message != nil { // if user sent any message
+		if update.Message.Text != "" && !update.Message.IsCommand() { // if user message is a text and not command
 			handleText(bot, update, flag)
-		} else if update.Message.IsCommand() {
-			if *flag != no_flag {
-				*flag = no_flag
+		} else if update.Message.IsCommand() { // if message is a command (starts with '/')
+			if *flag != no_flag { // if any command typed while any scenario that has a flag
+				*flag = no_flag // end the scenario
 			}
 			handleCommands(bot, update)
 		}
 	}
-	if update.CallbackQuery != nil {
+	if update.CallbackQuery != nil { // if user tapped any button on the inline keyboard
 		handleKeyboards(bot, update, flag)
 	}
 }
 
 func handleCommands(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
-	if update.Message.Text == "/start" {
+	if update.Message.Text == "/start" { // if command is /start
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Choose the language\nВыбери язык")
 		msg.ReplyMarkup = language_keyboard
 		send(bot, msg)
@@ -37,12 +37,12 @@ func handleCommands(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
 var vigenere_switch = 0
 
 func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
-	data := update.CallbackQuery.Data
+	data := update.CallbackQuery.Data // data of a button the user tapped
 	callback := tgbotapi.NewCallback(update.CallbackQuery.ID, update.CallbackQuery.Data)
 	if _, err := bot.Request(callback); err != nil {
 		panic(err)
 	}
-	switch data {
+	switch data { // handle some types of button data
 	case "language":
 		editText(bot, update, "Choose the language\nВыбери язык")
 		editKeyboard(bot, update, language_keyboard)

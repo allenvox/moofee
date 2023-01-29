@@ -4,8 +4,8 @@ import (
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
-var start_keyboard = []tgbotapi.InlineKeyboardMarkup{
-	tgbotapi.NewInlineKeyboardMarkup(
+var start_keyboard = []tgbotapi.InlineKeyboardMarkup{ // array of 2 keyboards
+	tgbotapi.NewInlineKeyboardMarkup( // [0] - english
 		tgbotapi.NewInlineKeyboardRow(
 			tgbotapi.NewInlineKeyboardButtonData("🔐 "+cipher_locale[0], "code"),
 			tgbotapi.NewInlineKeyboardButtonData("🎸 "+chords_locale[0], "chords"),
@@ -15,7 +15,7 @@ var start_keyboard = []tgbotapi.InlineKeyboardMarkup{
 			tgbotapi.NewInlineKeyboardButtonData("🆘 "+help_locale[0], "help"),
 		),
 	),
-	tgbotapi.NewInlineKeyboardMarkup(
+	tgbotapi.NewInlineKeyboardMarkup( // [1] - russian
 		tgbotapi.NewInlineKeyboardRow(
 			tgbotapi.NewInlineKeyboardButtonData("🔐 "+cipher_locale[1], "code"),
 			tgbotapi.NewInlineKeyboardButtonData("🎸 "+chords_locale[1], "chords"),
