@@ -155,7 +155,7 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 var phrase string
 
 func handleText(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
-	switch *flag {
+	switch *flag { // handle flags
 	case caesar_phrase:
 		phrase = update.Message.Text
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, shift_message_locale[language])
@@ -194,7 +194,7 @@ func handleText(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 	case m1, m2, m3, m4:
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, handlePuzzle(update, flag))
 		send(bot, msg)
-	default:
+	default: // if no flag - response with a start keyboard
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, choose_locale[language])
 		msg.ReplyMarkup = start_keyboard[language]
 		send(bot, msg)

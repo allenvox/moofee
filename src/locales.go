@@ -1,8 +1,7 @@
 package main
 
 // array[0] - english, array[1] - russian
-
-var ( // keyboards
+var (
 	cipher_locale             = []string{"Ciphers", "Шифры"}
 	chords_locale             = []string{"Chords", "Аккорды"}
 	chess_locale              = []string{"Chess", "Шахматы"}
