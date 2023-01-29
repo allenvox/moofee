@@ -51,11 +51,11 @@ func vigenereEncode(text string, key string) string {
 	for i := 0; i < len(textChars); i++ {
 		letter %= keylen
 		char := textChars[i] + keyChars[letter]
-		if textChars[i] >= 'a' && textChars[i] <= 'z' {
+		if isEnglish(textChars[i]) {
 			if char > 'z' {
 				char -= 'z'
 			}
-		} else if textChars[i] >= 'а' && textChars[i] <= 'я' {
+		} else if isRussian(textChars[i]) {
 			if char > 'я' {
 				char -= 'я'
 			}
@@ -74,11 +74,11 @@ func vigenereDecode(text string, key string) string {
 	for i := 0; i < len(textChars); i++ {
 		letter %= keylen
 		char := textChars[i] - keyChars[letter]
-		if textChars[i] >= 'a' && textChars[i] <= 'z' {
+		if isEnglish(textChars[i]) {
 			if char < 'a' {
 				char += 'a'
 			}
-		} else if textChars[i] >= 'а' && textChars[i] <= 'я' {
+		} else if isRussian(textChars[i]) {
 			if char < 'а' {
 				char += 'а'
 			}
