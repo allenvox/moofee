@@ -9,12 +9,13 @@ import (
 var chess_puzzle_number = 0
 
 func puzzleDescription(name string, flag *int) string {
+	// get string chess task with the number of required moves
 	var result string = chess_task_locale[language] + string([]rune(name)[1]) + move_locale[language]
-	if *flag >= m2 {
+	if *flag >= m2 { // ad plural endings if needed
 		result += plural_locale[language]
 	}
 	result += "\n\n"
-	chess_puzzle_number, _ = strconv.Atoi(string([]rune(name)[3]))
+	chess_puzzle_number, _ = strconv.Atoi(string([]rune(name)[3])) // get puzzle number (if m1_2 => task is mate in 1, puzzle number = 2)
 	return result + chess_move_locale[language]
 }
 
@@ -44,8 +45,8 @@ var chess_solutions = [][][]string{
 func handlePuzzle(update tgbotapi.Update, flag *int) string {
 	text := update.Message.Text
 	var result string = "std"
-	move_solution := chess_solutions[*flag-4][chess_puzzle_number-1][move-1]
-	switch move {
+	move_solution := chess_solutions[*flag-4][chess_puzzle_number-1][move-1] // get a solution for specific chess task
+	switch move {                                                            // get & send phrases for various puzzle situations
 	case 1:
 		if text != move_solution {
 			result = chess_phrases[0][language]
