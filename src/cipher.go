@@ -21,26 +21,26 @@ func isEnglish(letter rune) bool { // check if letter is english
 func caesar(text string, shift int) string { // caesar cipher
 	chars := []rune(strings.ToLower(text)) // get an array of lowercased characters
 	for i := 0; i < len(chars); i++ {      // loop through characters
-		if isEnglish(chars[i]) { // if letter is english
+		if isEnglish(chars[i]) {
 			shift = (shift%26 + 26) % 26 // only between 0 and 25
-		} else if isRussian(chars[i]) { // russian
+		} else if isRussian(chars[i]) {
 			shift = (shift%33 + 33) % 33 // only between 0 and 32
 		} else {
 			continue // skip if not a letter of any alphabets
 		}
 		char := chars[i] + rune(shift) // new char is an old char + shift
 		if isEnglish(chars[i]) {
-			if char > 'z' {
+			if char > 'z' { // if went through end of alphabet
 				char -= 26
 			}
-		} else if isRussian(chars[i]) {
+		} else if isRussian(chars[i]) { // same as above
 			if char > 'я' {
 				char -= 33
 			}
 		}
 		chars[i] = char
 	}
-	return string(chars)
+	return string(chars) // convert rune (char) array to string and return as a result
 }
 
 func vigenereEncode(text string, key string) string {
@@ -49,7 +49,7 @@ func vigenereEncode(text string, key string) string {
 	keylen := len(keyChars)
 	letter := 0
 	for i := 0; i < len(textChars); i++ {
-		letter %= keylen
+		letter %= keylen // for looping key around phrase (e.g. key = ab & phrase = cocoa => looped key = ababa)
 		char := textChars[i] + keyChars[letter]
 		if isEnglish(textChars[i]) {
 			if char > 'z' {
