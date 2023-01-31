@@ -29,7 +29,7 @@ func handleCommands(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Choose the language\nВыбери язык")
 		msg.ReplyMarkup = language_keyboard
 		send(bot, msg)
-	} else {
+	} else { // any other command - say that this bot has no commands
 		send(bot, tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, no_commands_locale[language]))
 	}
 }
@@ -39,14 +39,14 @@ var vigenere_switch = 0
 func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 	data := update.CallbackQuery.Data // data of a button the user tapped
 	callback := tgbotapi.NewCallback(update.CallbackQuery.ID, update.CallbackQuery.Data)
-	if _, err := bot.Request(callback); err != nil {
+	if _, err := bot.Request(callback); err != nil { // check the chat with a user via callback
 		panic(err)
 	}
 	switch data { // handle some types of button data
-	case "language":
+	case "language": // language button
 		editText(bot, update, "Choose the language\nВыбери язык")
 		editKeyboard(bot, update, language_keyboard)
-	case "start", "en", "ru":
+	case "start", "en", "ru": // start button and languages
 		if data == "ru" {
 			language = ru
 		}
@@ -121,7 +121,7 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 	case "date":
 		currentTime := time.Now()
 		day := time.Now().Format("Monday")
-		if language == ru {
+		if language == ru { // replace english weekday with russian
 			switch day {
 			case "Monday":
 				day = "понедельник"
@@ -154,7 +154,7 @@ func handleKeyboards(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
 
 var phrase string
 
-func handleText(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) {
+func handleText(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) { // when sent a text message
 	switch *flag { // handle flags
 	case caesar_phrase:
 		phrase = update.Message.Text
