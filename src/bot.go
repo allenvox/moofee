@@ -22,8 +22,8 @@ const ( // flags
 	vigenere_key           // handling vigenere cipher's key
 	m1                     // mate in 1 move
 	m2                     // mate in 2 moves
-	m3                     // ...
-	m4
+	m3                     // mate in 3 moves
+	m4                     // mate in 4 moves
 )
 
 func initBot() *tgbotapi.BotAPI {
@@ -49,6 +49,7 @@ func send(bot *tgbotapi.BotAPI, c tgbotapi.Chattable) { // send anything sendabl
 }
 
 func editKeyboard(bot *tgbotapi.BotAPI, update tgbotapi.Update, keyboard tgbotapi.InlineKeyboardMarkup) {
+	// keyboard edited markup
 	markup := tgbotapi.NewEditMessageReplyMarkup(update.CallbackQuery.Message.Chat.ID, update.CallbackQuery.Message.MessageID, keyboard)
 	send(bot, markup)
 }
