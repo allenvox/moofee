@@ -156,42 +156,42 @@ var phrase string
 
 func handleText(bot *tgbotapi.BotAPI, update tgbotapi.Update, flag *int) { // when sent a text message
 	switch *flag { // handle flags
-	case caesar_phrase:
+	case caesar_phrase: // entering a phrase for caesar cipher
 		phrase = update.Message.Text
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, shift_message_locale[language])
 		send(bot, msg)
 		*flag = caesar_shift
-	case caesar_shift:
-		shift, err := strconv.Atoi(update.Message.Text)
-		if err != nil {
+	case caesar_shift: // entering a shift for caesar
+		shift, err := strconv.Atoi(update.Message.Text) // convert message to Integer
+		if err != nil {                                 // if something went wrong
 			msg := tgbotapi.NewMessage(update.Message.Chat.ID, shift_value_mustbe_locale[language]+" "+numeric_locale[language])
 			send(bot, msg)
 		}
-		if shift < 0 {
+		if shift < 0 { // if shift is negative
 			msg := tgbotapi.NewMessage(update.Message.Chat.ID, shift_value_mustbe_locale[language]+" "+natural_locale[language])
 			send(bot, msg)
-		} else {
+		} else { // if success
 			msg := tgbotapi.NewMessage(update.Message.Chat.ID, caesar(phrase, shift))
 			send(bot, msg)
 			*flag = no_flag
 		}
-	case vigenere_phrase:
+	case vigenere_phrase: // entering a phrase for vigenere cipher
 		phrase = update.Message.Text
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, enter_cipher_key_locale[language])
 		send(bot, msg)
 		*flag = vigenere_key
-	case vigenere_key:
+	case vigenere_key: // entering a key for vigenere
 		key := update.Message.Text
 		text := result_locale[language] + ":\n"
-		if vigenere_switch > 0 {
+		if vigenere_switch > 0 { // if user has chosen to decode vigenere
 			text += vigenereDecode(phrase, key)
-		} else {
+		} else { // if vigenere encoding
 			text += vigenereEncode(phrase, key)
 		}
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, text)
 		send(bot, msg)
 		*flag = no_flag
-	case m1, m2, m3, m4:
+	case m1, m2, m3, m4: // mate in 1, 2, 3... moves
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, handlePuzzle(update, flag))
 		send(bot, msg)
 	default: // if no flag - response with a start keyboard
