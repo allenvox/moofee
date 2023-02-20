@@ -113,7 +113,7 @@ var chess_keyboard = []tgbotapi.InlineKeyboardMarkup{
 			tgbotapi.NewInlineKeyboardButtonData("🧩 "+mate_locale[0]+" 4 "+moves_locale[0], "mate_in4"),
 		),
 		tgbotapi.NewInlineKeyboardRow(
-			tgbotapi.NewInlineKeyboardButtonData("⬇ "+chess_locale[0], "chess"),
+			tgbotapi.NewInlineKeyboardButtonData("⬇ "+back_locale[0], "start"),
 		),
 	),
 	tgbotapi.NewInlineKeyboardMarkup(
@@ -126,7 +126,7 @@ var chess_keyboard = []tgbotapi.InlineKeyboardMarkup{
 			tgbotapi.NewInlineKeyboardButtonData("🧩 "+mate_locale[1]+" 4 "+moves_locale[1], "mate_in4"),
 		),
 		tgbotapi.NewInlineKeyboardRow(
-			tgbotapi.NewInlineKeyboardButtonData("⬇ "+chess_locale[1], "chess"),
+			tgbotapi.NewInlineKeyboardButtonData("⬇ "+back_locale[1], "start"),
 		),
 	),
 }
