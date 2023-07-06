@@ -1,12 +1,15 @@
-all: main
+EXE = moofee
+SRCS = $(wildcard src/*.go)
 
-.PHONY: main
-main: src/*.go
-	go build $^
+all: $(EXE)
+.PHONY: $(EXE)
+$(EXE): $(SRCS)
+	go build -o $@ $^
 
-run:
-	make
-	./main
+.PHONY: run
+run: $(EXE)
+	./$(EXE)
 
+.PHONY: clean
 clean:
-	rm -rf main
+	rm -f $(EXE)
