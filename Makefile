@@ -6,10 +6,6 @@ all: $(EXE)
 $(EXE): $(SRCS)
 	go build -o $@ $^
 
-.PHONY: run
-run: $(EXE)
-	./$(EXE)
-
 .PHONY: clean
 clean:
 	rm -f $(EXE)
